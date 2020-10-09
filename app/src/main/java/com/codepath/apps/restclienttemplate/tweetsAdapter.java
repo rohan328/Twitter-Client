@@ -15,7 +15,7 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
 
-public class tweetsAdapter extends RecyclerView.Adapter<tweetsAdapter.ViewHolder>{
+public class tweetsAdapter extends RecyclerView.Adapter<tweetsAdapter.ViewHolder> {
 
     Context context;
     List<Tweet> tweets;
@@ -30,7 +30,7 @@ public class tweetsAdapter extends RecyclerView.Adapter<tweetsAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_tweet,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_tweet, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,23 +48,42 @@ public class tweetsAdapter extends RecyclerView.Adapter<tweetsAdapter.ViewHolder
         return tweets.size();
     }
 
+    //clear recycler view
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    //add a list of tweets;
+    public void addAll(List<Tweet> tweetList) {
+        tweets.addAll(tweetList);
+        notifyDataSetChanged();
+    }
+
     //define a viewholder
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvName;
+        TextView tvTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivProfileImage=itemView.findViewById(R.id.ivProfileImage);
-            tvBody=itemView.findViewById(R.id.tvBody);
-            tvScreenName=itemView.findViewById(R.id.tvScreenName);
+            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            tvBody = itemView.findViewById(R.id.tvBody);
+            tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvTime = itemView.findViewById(R.id.tvTime);
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
+            tvScreenName.setText("@" + tweet.user.screenName);
+            tvName.setText(tweet.user.name);
+            tvTime.setText(tweet.getFormattedTimestamp());
+
             Glide.with(context).load(tweet.user.imageURL).into(ivProfileImage);
         }
     }
