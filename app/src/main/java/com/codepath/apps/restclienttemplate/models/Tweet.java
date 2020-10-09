@@ -14,12 +14,14 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public long Id;
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+        tweet.Id = jsonObject.getLong("id");
 
         return tweet;
     }
