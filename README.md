@@ -4,13 +4,13 @@
 
 Time spent: **6** hours spent in total
 
-#Week 2
+# Week 2
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] User can **compose and post a new tweet**
+- [x] User can **compose and post a new tweet**
   - [x] User can click a “Compose” icon in the Action Bar on the top right
   - [x] User can then enter a new tweet and post this to twitter
   - [x] User is taken back to home timeline with **new tweet visible** in timeline
